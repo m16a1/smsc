@@ -23,10 +23,21 @@ module Smsc
         mes: message,
         charset: @charset,
         sender: options[:sender]
+        id: options[:id]
       }
 
       @connection.post '/sys/send.php', params
     end
 
+    def status(phone, message_id)
+      params = {
+        login: @login,
+        psw: @password,
+        phone: phone,
+        id: message_id
+      }
+
+      @connection.post '/sys/status.php', params
+    end
   end
 end
