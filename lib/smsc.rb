@@ -37,7 +37,28 @@ module Smsc
         id: message_id
       }
 
-      @connection.post '/sys/status.php', params
+      @connection.get '/sys/status.php', params
+    end
+
+    def balance
+      params = {
+        login: @login,
+        psw: @password
+      }
+
+      @connection.get '/sys/balance.php', params
+    end
+
+    def statistic(start_date, end_date)
+      params = {
+        get_stat: 1,
+        login: @login,
+        psw: @password
+        start: start_date,
+        end: end_date
+      }
+
+      @connection.get '/sys/get.php', params
     end
   end
 end
