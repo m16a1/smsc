@@ -22,7 +22,7 @@ module Smsc
         phones: phones.join(','),
         mes: message,
         charset: @charset,
-        sender: options[:sender]
+        sender: options[:sender],
         id: options[:id]
       }
 
@@ -53,7 +53,7 @@ module Smsc
       params = {
         get_stat: 1,
         login: @login,
-        psw: @password
+        psw: @password,
         start: start_date,
         end: end_date
       }
