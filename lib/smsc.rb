@@ -3,7 +3,6 @@ require 'faraday'
 
 module Smsc
   class Sms
-
     def initialize(login, password, charset = 'utf-8')
       @login = login
       @password = Digest::MD5.hexdigest(password.to_s)
@@ -21,10 +20,8 @@ module Smsc
         psw: @password,
         phones: phones.join(','),
         mes: message,
-        charset: @charset,
-        sender: options[:sender],
-        id: options[:id]
-      }
+        charset: @charset
+      }.merge(options)
 
       @connection.post '/sys/send.php', params
     end
